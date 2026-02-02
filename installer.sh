@@ -75,7 +75,7 @@ PACKAGES=(
   neovim
   swaync
   python
-  matugen-bin
+  matugen
   wlogout
   swww
   swayosd
