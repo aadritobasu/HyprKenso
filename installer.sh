@@ -44,6 +44,15 @@ PACKAGES=(
   rmpc-git
   quickshell-git
   mpd
+  pipewire
+  pipewire-alsa
+  pipewire-pulse
+  pipewire-audio
+  nm-connection-editor
+  networkmanager
+  man-db
+  reflector
+  jack2
 )
 
 # Dotfiles repos
@@ -158,7 +167,9 @@ cd "$HOME"
 # -----------------------------
 echo "🎵 Enabling and starting MPD..."
 sudo systemctl enable --now mpd.service
-
+echo "🎵 Enabling and starting pipewire and disabling pulseaudio..."
+systemctl --user --now disable pulseaudio.service pulseaudio.socket
+systemctl --user --now enable pipewire pipewire-pulse
 echo "🎉 Kenso minimal setup complete!"
 echo "📁 Dotfiles cloned to $BASE_DIR"
 echo "🗄 Backup of old configs at $BACKUP_DIR"
@@ -193,26 +204,32 @@ fi
 
 echo "✅ Powerlevel10k installation complete!"
 # -----------------------------
-# 9️⃣ Copy Zsh config files to home (~)
+# 🐚 ZSH setup (copy from ~/.config/zsh)
 # -----------------------------
-echo "📂 Copying Zsh configs to ~"
+echo "🐚 Setting up ZSH configuration..."
 
-ZSH_SRC="$BASE_DIR/kenso-zsh"  # replace with the actual folder name in your repo
+ZSH_SRC="$HOME/.config/zsh"
 
 if [[ -d "$ZSH_SRC" ]]; then
-    for file in "$ZSH_SRC"/*; do
-        filename=$(basename "$file")
-        # Backup existing file if present
-        if [[ -f "$HOME/$filename" ]]; then
-            mkdir -p "$BACKUP_DIR"
-            mv "$HOME/$filename" "$BACKUP_DIR/"
-            echo "🗄 Backed up existing $filename"
-        fi
-        cp "$file" "$HOME/"
-        echo "→ Copied $filename to ~"
-    done
+  echo "📁 Copying ZSH config files to home..."
+
+  # Copy standard zsh dotfiles (.zshrc, .zprofile, etc.)
+  cp -rf "$ZSH_SRC"/.* "$HOME/" 2>/dev/null || true
+
+  # Copy Powerlevel10k config explicitly
+  if [[ -f "$ZSH_SRC/.p10k.zsh" ]]; then
+    cp -f "$ZSH_SRC/.p10k.zsh" "$HOME/.p10k.zsh"
+  fi
+
+  # Copy zcompdump files if present
+  if ls "$ZSH_SRC"/.zcompdump* &>/dev/null; then
+    cp -f "$ZSH_SRC"/.zcompdump* "$HOME/"
+    echo "✔ zcompdump files copied"
+  fi
+
+  echo "✔ ZSH configs copied"
 else
-    echo "⚠ Zsh config folder not found at $ZSH_SRC"
+  echo "⚠ ~/.config/zsh not found, skipping ZSH config copy"
 fi
 
 
