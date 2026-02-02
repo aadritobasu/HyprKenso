@@ -14,10 +14,70 @@ BACKUP_DIR="$HOME/.config_backup_$(date +%Y%m%d%H%M)"
 
 # Required packages (minimal)
 PACKAGES=(
+  7zip
+  file-roller
   downgrade
+  sddm
+  qt5-3d
+  qt5-base
+  qt5-declarative
+  qt5-gamepad
+  qt5-graphicaleffects
+  qt5-imageformats
+  qt5-location
+  qt5-multimedia
+  qt5-networkauth
+  qt5-quickcontrols
+  qt5-quickcontrols2
+  qt5-script
+  qt5-sensors
+  qt5-serialport
+  qt5-speech
+  qt5-svg
+  qt5-tools
+  qt5-translations
+  qt5-virtualkeyboard
+  qt5-wayland
+  qt5-x11extras
+  qt5-xmlpatterns
+  qt5ct-kde
+  qt6-5compat
+  qt6-base
+  qt6-declarative
+  qt6-imageformats
+  qt6-multimedia
+  qt6-multimedia-ffmpeg
+  qt6-networkauth
+  qt6-positioning
+  qt6-scxml
+  qt6-shadertools
+  qt6-speech
+  qt6-svg
+  qt6-tools
+  qt6-translations
+  qt6-virtualkeyboard
+  qt6-wayland
+  qt6-webchannel
+  qt6-webengine
+  qt6ct-kde
+  gtk-doc
+  gtk-layer-shell
+  gtk-update-icon-cache
+  gtk-vnc
+  gtk2
+  gtk3
+  gtk4
+  gtk4-layer-shell
+  gtkmm-4.0
+  gtkmm3
+  gtksourceview3
+  gtksourceview4
+  gtksourceviewmm
   hyprland
   waybar
   rofi
+  rofi-emoji
+  btop
   neovim
   swaync
   python
@@ -44,6 +104,16 @@ PACKAGES=(
   rmpc-git
   quickshell-git
   mpd
+  playerctl
+  brightnessctl
+  visual-studio-code-insiders-bin
+  nwg-look
+  nwg-displays
+  loupe
+  feh
+  mpv
+  mpc
+  papirus-folders
   pipewire
   pipewire-alsa
   pipewire-pulse
@@ -53,6 +123,16 @@ PACKAGES=(
   man-db
   reflector
   jack2
+  otf-font-awesome
+  otf-space-grotesk
+  ttf-jetbrains-mono-nerd
+  ttf-material-symbols-variable-git
+  ttf-readex-pro
+  ttf-rubik-vf
+  ttf-twemoji
+  starship
+  fontconfig
+  adw-gtk-theme-git
 )
 
 # Dotfiles repos
@@ -93,6 +173,47 @@ for pkg in "${PACKAGES[@]}"; do
     yay -S --noconfirm --needed "$pkg"
   fi
 done
+
+FONT_DIR="$HOME/.local/share/fonts"
+mkdir -p "$FONT_DIR"
+
+echo "Installing Google Sans Flex..."
+
+curl -L \
+  https://github.com/google/fonts/raw/main/ofl/googlesansflex/GoogleSansFlex%5Bwght%5D.ttf \
+  -o "$FONT_DIR/GoogleSansFlex[wght].ttf"
+
+fc-cache -fv
+
+FONT_DIR="$HOME/.local/share/fonts"
+mkdir -p "$FONT_DIR"
+
+echo "Installing SF Pro fonts..."
+
+tmpdir=$(mktemp -d)
+cd "$tmpdir" || exit 1
+
+# Download from Apple
+curl -L -o SF-Pro.dmg \
+  https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg
+
+# Extract DMG
+7z x SF-Pro.dmg >/dev/null
+
+# Extract PKG
+7z x *.pkg >/dev/null
+
+# Extract payload
+7z x Payload~ >/dev/null
+
+# Move fonts
+find . -type f \( -name "*.otf" -o -name "*.ttf" \) -exec mv {} "$FONT_DIR" \;
+
+# Cleanup
+rm -rf "$tmpdir"
+
+# Refresh cache
+fc-cache -fv
 
 # -----------------------------
 # 2️⃣ Clone dotfiles into ~/hyprkenso
@@ -300,4 +421,12 @@ if [[ -f "$HYPR_LENS_CFG" ]]; then
   echo "✔ hypr-lens paths updated for user: $USER"
 else
   echo "⚠ hypr-lens config.json not found, skipping"
+fi
+echo "Checking display manager..."
+
+if pacman -Q gdm &>/dev/null || pacman -Q lightdm &>/dev/null; then
+    echo "GDM or LightDM detected — leaving display manager untouched."
+else
+    echo "No GDM or LightDM detected — enabling SDDM..."
+    sudo systemctl enable sddm
 fi
