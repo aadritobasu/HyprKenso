@@ -14,6 +14,7 @@ BACKUP_DIR="$HOME/.config_backup_$(date +%Y%m%d%H%M)"
 
 # Required packages (minimal)
 PACKAGES=(
+  tar
   7zip
   file-roller
   downgrade
@@ -179,46 +180,7 @@ for pkg in "${PACKAGES[@]}"; do
   fi
 done
 
-FONT_DIR="$HOME/.local/share/fonts"
-mkdir -p "$FONT_DIR"
 
-echo "Installing Google Sans Flex..."
-
-curl -L \
-  https://github.com/google/fonts/raw/main/ofl/googlesansflex/GoogleSansFlex%5Bwght%5D.ttf \
-  -o "$FONT_DIR/GoogleSansFlex[wght].ttf"
-
-fc-cache -fv
-
-FONT_DIR="$HOME/.local/share/fonts"
-mkdir -p "$FONT_DIR"
-
-echo "Installing SF Pro fonts..."
-
-tmpdir=$(mktemp -d)
-cd "$tmpdir" || exit 1
-
-# Download from Apple
-curl -L -o SF-Pro.dmg \
-  https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg
-
-# Extract DMG
-7z x SF-Pro.dmg >/dev/null
-
-# Extract PKG
-7z x *.pkg >/dev/null
-
-# Extract payload
-7z x Payload~ >/dev/null
-
-# Move fonts
-find . -type f \( -name "*.otf" -o -name "*.ttf" \) -exec mv {} "$FONT_DIR" \;
-
-# Cleanup
-rm -rf "$tmpdir"
-
-# Refresh cache
-fc-cache -fv
 
 # -----------------------------
 # 2️⃣ Clone dotfiles into ~/hyprkenso
@@ -293,8 +255,7 @@ cd "$HOME"
 # -----------------------------
 echo "🎵 Enabling and starting MPD..."
 sudo systemctl enable --now mpd.service
-echo "🎵 Enabling and starting pipewire and disabling pulseaudio..."
-systemctl --user --now disable pulseaudio.service pulseaudio.socket
+echo "🎵 Enabling and starting pipewire"
 systemctl --user --now enable pipewire pipewire-pulse
 echo "🎉 Kenso minimal setup complete!"
 echo "📁 Dotfiles cloned to $BASE_DIR"
