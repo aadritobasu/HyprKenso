@@ -64,6 +64,10 @@
   <img src="screenshots/desktop-18.png" width="45%" />
 </p>
 
+<p align="center">
+  <em>Minimal • Material You inspired • Workflow focused</em>
+</p>
+
 ## 🎥 Videos
 
 Some things are better seen in motion.
@@ -76,9 +80,7 @@ on my Reddit profile:
 (New videos will be added as features and themes evolve.)
 
 
-<p align="center">
-  <em>Minimal • Material You inspired • Workflow focused</em>
-</p>
+
 
 ---
 
