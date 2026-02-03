@@ -145,6 +145,8 @@ PACKAGES=(
   colloid-icon-theme-git
   noto-fonts-cjk
   zsh-theme-powerlevel10k-git
+  fzf
+  fzf-tab-git
 )
 
 # -----------------------------
