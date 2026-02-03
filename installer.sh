@@ -310,6 +310,9 @@ if ! pacman -Q gdm &>/dev/null && ! pacman -Q lightdm &>/dev/null; then
   sudo systemctl enable sddm
 fi
 
+
+
+
 echo "✅ Kenso installation COMPLETE"
 echo "🔁 Backup: $BACKUP_DIR"
 echo "➡️  Reboot recommended"
