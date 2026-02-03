@@ -143,6 +143,8 @@ PACKAGES=(
   opencv
   python-opencv
   colloid-icon-theme-git
+  noto-fonts-cjk
+  zsh-theme-powerlevel10k-git
 )
 
 # -----------------------------
@@ -243,26 +245,6 @@ if [[ -d "$ZSH_SRC" ]]; then
   rsync -a "$ZSH_SRC"/ "$HOME/"
 fi
 
-# -----------------------------
-# Oh My Zsh + Powerlevel10k
-# -----------------------------
-echo "🌟 Installing Oh My Zsh & Powerlevel10k..."
-
-if [[ ! -d "$HOME/.oh-my-zsh" ]]; then
-  RUNZSH=no CHSH=no \
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-fi
-
-ZSH_CUSTOM="$HOME/.oh-my-zsh/custom"
-
-if [[ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]]; then
-  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git \
-    "$ZSH_CUSTOM/themes/powerlevel10k"
-fi
-
-touch "$HOME/.zshrc"
-sed -i '/^ZSH_THEME=/d' "$HOME/.zshrc"
-echo 'ZSH_THEME="powerlevel10k/powerlevel10k"' >> "$HOME/.zshrc"
 
 # -----------------------------
 # Change default shell
