@@ -28,40 +28,15 @@
   <a href="#credits">Credits</a>
 </p>
 
+---
+
+## About
+
+**HyprKenso** is a minimal yet powerful **Hyprland rice** for **Arch Linux**, focused on clarity, aesthetics, and real-world usability.
 
 ---
 
-## ✨ About HyprKenso
-
-HyprKenso is a **clean, aesthetic, and beginner-friendly Hyprland rice** built on Arch Linux.
-
-This is my **first dream project**, shaped by real daily usage — every feature included is something I personally use, and every bug I hit has been fixed or removed.
-
-The goal is simple:
-- Easy to understand
-- Easy to configure
-- Powerful enough for daily driving
-
----
-
-
-
-
-## Features
-
-- 🪟 Hyprland (Wayland)
-- 🎨 Material You colors via `matugen`
-- 🧩 GTK: adw-gtk3
-- 🖼️ Icons: Papirus
-- 🔤 Fonts: Google Sans Flex + Apple Fonts
-- 🎵 Music: mpd + rmpc
-- ⚡ Clean, modular dotfiles
-- 🧠 Beginner-friendly structure
-
-
----
-
-<!-- Screenshots -->
+## Screenshots
 
 <!-- Hero shots (large) -->
 <p align="center">
@@ -119,7 +94,9 @@ The goal is simple:
   <em>Minimal • Material You inspired • Workflow focused</em>
 </p>
 
-## 🎥 Videos
+---
+
+## Videos
 
 Some things are better seen in motion.
 
@@ -130,38 +107,18 @@ on my Reddit profile:
 
 (New videos will be added as features and themes evolve.)
 
-
-
-
-
-
-## 🎨 Theming
-
-- **Wallpaper**: HyprKenso Wallpaper Collection
-  *(Collected from Google, Wallhaven, Wallflare, and similar sources)*
-
-- **Colors**: Material You (via `matugen`)
-- **GTK Theme**: `adw-gtk3`
-- **Icon Theme**: `Papirus`
-  *(Different Papirus variants per theme)*
-
 ---
 
-## 🔤 Fonts
+## Features
 
-- **Google Sans Flex**
-- **Apple Fonts** (SF Pro / SF Mono)
-
-Fonts are handled automatically by the installer.
-
----
-
-## 🎵 Music
-
-- **MPD**
-- **rmpc**
-
-Lightweight, keyboard-driven, and perfectly suited for a Hyprland workflow.
+- 🪟 Hyprland (Wayland)
+- 🎨 Material You colors via `matugen`
+- 🧩 GTK: adw-gtk3
+- 🖼️ Icons: Papirus
+- 🔤 Fonts: Google Sans Flex + Apple Fonts
+- 🎵 Music: mpd + rmpc
+- ⚡ Clean, modular dotfiles
+- 🧠 Beginner-friendly structure
 
 ---
 
@@ -177,16 +134,16 @@ All dependencies and configs are handled **inside the installer** — no git sub
 
 ---
 
-## ⚙️ Requirements
+## Requirements
 
-- Arch Linux (base install)
+- Arch Linux / Base Arch install
 - git
 - yay
 - Chaotic-AUR enabled
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ```bash
 git clone https://github.com/aadritobasu/HyprKenso.git
@@ -197,7 +154,7 @@ chmod +x installer.sh
 
 ---
 
-## ⚠️ Post-Install
+## Post-Install
 
 ```bash
 sudo downgrade hyprland   # select 0.52.2
@@ -218,6 +175,7 @@ chmod +x install.sh
 ```
 
 **Midnight theme**
+
 ```bash
 mkdir -p ~/.config/BetterDiscord/themes
 curl -L https://github.com/refact0r/midnight-discord/releases/latest/download/midnight.theme.css -o ~/.config/BetterDiscord/themes/midnight.theme.css
@@ -240,7 +198,7 @@ spicetify apply
 
 ---
 
-## 🙏 Credits
+## Credits
 
 - Fastfetch config by **menhoudj**
 
