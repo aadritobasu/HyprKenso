@@ -148,7 +148,7 @@ All dependencies and configs are handled **inside the installer** — no git sub
 ```bash
 git clone https://github.com/aadritobasu/HyprKenso.git
 cd HyprKenso
-chmod +x installer.sh
+rm -rf dots
 ./installer.sh
 ```
 
