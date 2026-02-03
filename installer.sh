@@ -142,6 +142,7 @@ PACKAGES=(
   hyprpicker
   opencv
   python-opencv
+  colloid-icon-theme-git
 )
 
 # -----------------------------
@@ -310,6 +311,21 @@ if ! pacman -Q gdm &>/dev/null && ! pacman -Q lightdm &>/dev/null; then
   sudo systemctl enable sddm
 fi
 
+# ==========================================
+# 🚀 Run post-install script
+# ==========================================
+
+SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+POST_INSTALL="$SCRIPT_DIR/post-install.sh"
+
+if [[ -f "$POST_INSTALL" ]]; then
+  echo "🔧 Running post-install script..."
+  chmod +x "$POST_INSTALL"
+  "$POST_INSTALL"
+  echo "✔ Post-install completed"
+else
+  echo "⚠ post-install.sh not found, skipping"
+fi
 
 
 

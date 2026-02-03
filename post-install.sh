@@ -15,14 +15,6 @@ CLEAN_TARGETS=(
   "$HOME/.local/share/icons"
 )
 
-# -----------------------------
-# Google Sans Flex
-# -----------------------------
-FONT_FILE="GoogleSansFlex-VariableFont_GRAD,ROND,opsz,slnt,wdth,wght.ttf"
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-FONT_SRC="$SCRIPT_DIR/$FONT_FILE"
-FONT_DIR="$HOME/.local/share/fonts/GoogleSansFlex"
-
 # ==================================================
 # 1️⃣ Remove stray .git directories
 # ==================================================
@@ -43,26 +35,34 @@ done
 
 echo "✔ Git cleanup complete"
 
-# ==================================================
-# 2️⃣ Install Google Sans Flex font
-# ==================================================
-echo "🔤 Installing Google Sans Flex..."
+# ==========================================
+# Fonts (Apple + Google Sans Flex)
+# Source: HyprKenso/fonts/*
+# Target: ~/.local/share/fonts/HyprKenso
+# ==========================================
 
-if [[ ! -f "$FONT_SRC" ]]; then
-  echo "⚠ Font file not found, skipping:"
-  echo "   $FONT_SRC"
+echo "🔤 Installing fonts..."
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+FONT_SRC="$SCRIPT_DIR/fonts"
+FONT_DST="$HOME/.local/share/fonts/HyprKenso"
+
+if [[ ! -d "$FONT_SRC" ]]; then
+  echo "⚠ fonts directory not found, skipping fonts"
 else
-  mkdir -p "$FONT_DIR"
-  cp -f "$FONT_SRC" "$FONT_DIR/"
+  mkdir -p "$FONT_DST"
 
-  echo "🔄 Updating font cache..."
-  fc-cache -fv >/dev/null
-
-  if fc-list | grep -qi "Google Sans"; then
-    echo "✔ Google Sans Flex installed successfully"
-  else
-    echo "⚠ Font copied but not detected yet (logout/reboot may be needed)"
-  fi
+  rsync -a \
+    --exclude='.git*' \
+    --exclude='README*' \
+    "$FONT_SRC/" \
+    "$FONT_DST/"
 fi
 
-echo "✅ Post-install tasks complete"
+echo "🔄 Refreshing font cache..."
+fc-cache -fv >/dev/null
+
+echo "✔ Fonts installed"
+
+fc-list | grep -i "Google Sans"
+fc-list | grep -i "SF Pro"
