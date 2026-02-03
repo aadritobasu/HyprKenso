@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/hyprkenso-logo.png" width="220" />
+  <img src="assets/hyprkenso-logo.png" width="300" />
 </p>
 
 <p align="center">
