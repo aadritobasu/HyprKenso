@@ -1,4 +1,6 @@
-<h1 align="center">HyprKenso</h1>
+<p align="center">
+  <img src="assets/hyprkenso-logo.png" width="220" />
+</p>
 
 <p align="center">
   <em>Simplicity, made powerful — a clean Hyprland setup for Arch Linux</em>
@@ -7,6 +9,55 @@
 <p align="center">
   Built with love ❤️ and designed to stay simple, readable, and powerful.
 </p>
+
+<p align="center">
+  <a href="https://github.com/aadritobasu/HyprKenso">
+    <img src="https://img.shields.io/github/stars/aadritobasu/HyprKenso?style=flat-square&color=ffd700&label=Stars" />
+  </a>
+  <img src="https://img.shields.io/badge/Hyprland-Rice-6b7280?style=flat-square" />
+  <img src="https://img.shields.io/badge/Arch-Linux-1793d1?style=flat-square&logo=arch-linux&logoColor=white" />
+  <img src="https://img.shields.io/badge/Wayland-Hyprland-111827?style=flat-square" />
+  <img src="https://img.shields.io/badge/Material-You-22c55e?style=flat-square" />
+  <img src="https://img.shields.io/badge/Beginner-Friendly-f97316?style=flat-square" />
+</p>
+
+<p align="center">
+  <a href="#installation">Installation</a> •
+  <a href="#screenshots">Screenshots</a> •
+  <a href="#videos">Videos</a> •
+  <a href="#credits">Credits</a>
+</p>
+
+
+---
+
+## ✨ About HyprKenso
+
+HyprKenso is a **clean, aesthetic, and beginner-friendly Hyprland rice** built on Arch Linux.
+
+This is my **first dream project**, shaped by real daily usage — every feature included is something I personally use, and every bug I hit has been fixed or removed.
+
+The goal is simple:
+- Easy to understand
+- Easy to configure
+- Powerful enough for daily driving
+
+---
+
+
+
+
+## Features
+
+- 🪟 Hyprland (Wayland)
+- 🎨 Material You colors via `matugen`
+- 🧩 GTK: adw-gtk3
+- 🖼️ Icons: Papirus
+- 🔤 Fonts: Google Sans Flex + Apple Fonts
+- 🎵 Music: mpd + rmpc
+- ⚡ Clean, modular dotfiles
+- 🧠 Beginner-friendly structure
+
 
 ---
 
@@ -82,20 +133,7 @@ on my Reddit profile:
 
 
 
----
 
-## ✨ About HyprKenso
-
-HyprKenso is a **clean, aesthetic, and beginner-friendly Hyprland rice** built on Arch Linux.
-
-This is my **first dream project**, shaped by real daily usage — every feature included is something I personally use, and every bug I hit has been fixed or removed.
-
-The goal is simple:
-- Easy to understand
-- Easy to configure
-- Powerful enough for daily driving
-
----
 
 ## 🎨 Theming
 
