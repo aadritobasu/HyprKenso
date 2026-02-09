@@ -144,6 +144,7 @@ PACKAGES=(
   fontconfig
   adw-gtk-theme-git
   hyprlock
+  hypridle
   grim
   slurp
   jq
