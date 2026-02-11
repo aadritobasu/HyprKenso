@@ -193,9 +193,9 @@ curl -fsSL https://raw.githubusercontent.com/spicetify/cli/main/install.sh | sh
 ```
 
 ```bash
-spicetify backup enable dev-tools
+spicetify backup enable-devtools
 spicetify config current_theme text
-spicetify apply
+spicetify backup apply
 ```
 
 ---
