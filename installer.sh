@@ -31,6 +31,7 @@ PACKAGES=(
   tree-sitter-cli
   lazygit
   npm
+  rsync
   file-roller
   downgrade
   sddm
